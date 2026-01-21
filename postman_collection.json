@@ -1,0 +1,655 @@
+{
+  "info": {
+    "name": "FuelSand Wheels API",
+    "description": "Complete API collection for FuelSand Wheels mobile app backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Profile APIs",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/profile/get_profile.php",
+              "host": ["{{base_url}}"],
+              "path": ["profile", "get_profile.php"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"phone\": \"+1234567890\",\n  \"shop\": {\n    \"description\": \"Expert car repair services\",\n    \"address\": \"123 Main St, City, State\",\n    \"phone\": \"+1234567890\",\n    \"latitude\": 12.9716,\n    \"longitude\": 77.5946,\n    \"radius\": 5\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/profile/update_profile.php",
+              "host": ["{{base_url}}"],
+              "path": ["profile", "update_profile.php"]
+            }
+          }
+        },
+        {
+          "name": "Upload Profile Image",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/profile/upload_image.php?image_type=profile",
+              "host": ["{{base_url}}"],
+              "path": ["profile", "upload_image.php"],
+              "query": [
+                {
+                  "key": "image_type",
+                  "value": "profile"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Upload Shop Image",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mechanic_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/profile/upload_image.php?image_type=shop",
+              "host": ["{{base_url}}"],
+              "path": ["profile", "upload_image.php"],
+              "query": [
+                {
+                  "key": "image_type",
+                  "value": "shop"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"user\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"phone\": \"+1234567890\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register.php",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register.php"]
+            }
+          }
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/verify_otp.php",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "verify_otp.php"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login.php",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login.php"]
+            }
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/forgot_password.php",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "forgot_password.php"]
+            }
+          }
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"otp\": \"123456\",\n  \"new_password\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/reset_password.php",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "reset_password.php"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User APIs",
+      "item": [
+        {
+          "name": "Update Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": 12.9716,\n  \"longitude\": 77.5946\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/update_location.php",
+              "host": ["{{base_url}}"],
+              "path": ["user", "update_location.php"]
+            }
+          }
+        },
+        {
+          "name": "Get Nearby Shops",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/get_nearby_shops.php?service_type=fuel&radius=10",
+              "host": ["{{base_url}}"],
+              "path": ["user", "get_nearby_shops.php"],
+              "query": [
+                {
+                  "key": "service_type",
+                  "value": "fuel"
+                },
+                {
+                  "key": "radius",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Service Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop_id\": 1,\n  \"service_id\": 1,\n  \"description\": \"Additional service needed\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/create_service_request.php",
+              "host": ["{{base_url}}"],
+              "path": ["user", "create_service_request.php"]
+            }
+          }
+        },
+        {
+          "name": "Get Order History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/get_order_history.php?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["user", "get_order_history.php"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Order Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/get_order_status.php?order_id=1",
+              "host": ["{{base_url}}"],
+              "path": ["user", "get_order_status.php"],
+              "query": [
+                {
+                  "key": "order_id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Make Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 1,\n  \"payment_method\": \"online\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/make_payment.php",
+              "host": ["{{base_url}}"],
+              "path": ["user", "make_payment.php"]
+            }
+          }
+        },
+        {
+          "name": "Give Rating",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 1,\n  \"rating\": 5,\n  \"review\": \"Great service!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/give_rating.php",
+              "host": ["{{base_url}}"],
+              "path": ["user", "give_rating.php"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mechanic APIs",
+      "item": [
+        {
+          "name": "Register Shop",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mechanic_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John's Garage\",\n  \"latitude\": 12.9716,\n  \"longitude\": 77.5946,\n  \"radius\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/mechanic/register_shop.php",
+              "host": ["{{base_url}}"],
+              "path": ["mechanic", "register_shop.php"]
+            }
+          }
+        },
+        {
+          "name": "Add Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mechanic_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Oil Change\",\n  \"price\": 500\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/mechanic/add_service.php",
+              "host": ["{{base_url}}"],
+              "path": ["mechanic", "add_service.php"]
+            }
+          }
+        },
+        {
+          "name": "Accept/Reject Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mechanic_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_id\": 1,\n  \"action\": \"accept\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/mechanic/accept_reject_request.php",
+              "host": ["{{base_url}}"],
+              "path": ["mechanic", "accept_reject_request.php"]
+            }
+          }
+        },
+        {
+          "name": "Complete Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mechanic_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_id\": 1,\n  \"final_amount\": 550\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/mechanic/complete_request.php",
+              "host": ["{{base_url}}"],
+              "path": ["mechanic", "complete_request.php"]
+            }
+          }
+        },
+        {
+          "name": "Get Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mechanic_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/mechanic/dashboard.php",
+              "host": ["{{base_url}}"],
+              "path": ["mechanic", "dashboard.php"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fuel Bunk Owner APIs",
+      "item": [
+        {
+          "name": "Register Bunk",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{owner_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"XYZ Fuel Bunk\",\n  \"latitude\": 12.9716,\n  \"longitude\": 77.5946,\n  \"radius\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/owner/register_bunk.php",
+              "host": ["{{base_url}}"],
+              "path": ["owner", "register_bunk.php"]
+            }
+          }
+        },
+        {
+          "name": "Add Fuel Price",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{owner_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Petrol\",\n  \"price\": 100\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/owner/add_fuel_price.php",
+              "host": ["{{base_url}}"],
+              "path": ["owner", "add_fuel_price.php"]
+            }
+          }
+        },
+        {
+          "name": "Complete Fuel Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{owner_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_id\": 1,\n  \"final_amount\": 2000,\n  \"liters\": 20\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/owner/complete_fuel_request.php",
+              "host": ["{{base_url}}"],
+              "path": ["owner", "complete_fuel_request.php"]
+            }
+          }
+        },
+        {
+          "name": "Get Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{owner_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/owner/dashboard.php",
+              "host": ["{{base_url}}"],
+              "path": ["owner", "dashboard.php"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/fuelsonwheels/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "user_token",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "mechanic_token",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "owner_token",
+      "value": "3",
+      "type": "string"
+    }
+  ]
+}
