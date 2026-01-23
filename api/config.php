@@ -46,7 +46,7 @@ function verifyPassword($password, $hash) {
 }
 
 function generateOTP() {
-    return str_pad(rand(0, 999999), 5, '0', STR_PAD_LEFT);
+    return str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
 }
 
 function sendOTP($email, $otp) {
